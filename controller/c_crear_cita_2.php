@@ -2,11 +2,14 @@
 
 require('model/Conexion.php');
 
-
+//se crea un objeto con toda la logica del modelo
 $con = new Conexion();
 
+// recuperar dato seleccionado 
 $policlinica = $_POST['policlinica'];
 
+
+// obtener datos a mostrar en la siguiente vista
 $id = $con->RecuperarPoliclinicaFase2($policlinica);
 
 $gruposid = $con->encotrarEspecialdades($id);

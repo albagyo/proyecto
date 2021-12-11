@@ -6,15 +6,17 @@ class Conexion{
 
     public function __construct(){
         // Se establece una conexion con la base de datos ya creada
-        $this->conn = new mysqli("127.0.0.1", "root", "", "sigmed");
-/*         $this->conn = new mysqli("localhost", "id15643424_root", "", "id15643424_mysql"); */
+        $this->conn = new mysqli("sql208.epizy.com", "epiz_30568627", "swF1GDSJSQk", "epiz_30568627_sigmed");
+
         if ($this->conn->connect_error) {
             die("La conexión falló: " . $this->conn->connect_error);
         }
     }
 
+
     //funciones para crear usuario 
 
+    // crear una nueva cuenta con los datos introducidos
     public function crearCuenta($cedula,$nombre,$apellido,$correo,$contrasenna){
         $validar1 = false;
         $validar2 = false;
@@ -28,6 +30,8 @@ class Conexion{
 
     }
 
+
+    // Introducir los datos de nuevo usuario en la base de datos
     public function CrearUsuario($cedula,$nombre,$apellido,$correo,$contrasenna){
         $tipo_usuario = 1;
        
@@ -40,6 +44,9 @@ class Conexion{
            }
         
     }
+
+
+    // obtener id del usuario creado
     public function getIdUsuario(){
         $sql = "select MAX(id) AS max_id_user FROM usuario";
 
@@ -55,6 +62,9 @@ class Conexion{
              
         return $respuesta;
     }
+
+
+    // introducir datos en la tabla paciente
     public function CrearPaciente($cedula,$nombre,$apellido){
         $id_usuario = $this->getIdUsuario();
     
@@ -65,7 +75,9 @@ class Conexion{
             return false;}
     }
 
+
     //iniciar sesion
+    //verificar si existe el usuario en el sistema
     public function existeUsuario($correo,$contrasenna){
         $sql = "SELECT * FROM usuario WHERE email = '$correo' AND contrasenna = '$contrasenna'";
         
@@ -88,6 +100,7 @@ class Conexion{
             
     
 
+    // obtener id del usuario
     public function obtenerId($correo,$contrasenna){
         $sql = "SELECT * FROM usuario WHERE email = '$correo' AND contrasenna = '$contrasenna'";
 
@@ -107,7 +120,8 @@ class Conexion{
         return $respuesta;
     }
 
-//escalera del terror
+
+    //Obtener datos de la policlinica
     public function RecuperarPoliclinicas(){
        
         
@@ -331,7 +345,6 @@ class Conexion{
             }
 
             
-    
 
     
     public function __destruct(){
