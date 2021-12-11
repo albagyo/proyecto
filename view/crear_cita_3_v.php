@@ -16,6 +16,9 @@ html, body {
 </style>
 </head>
 <body>
+<header>
+		<?php require_once('C:\xampp\htdocs\1\proyecto\view\Layouts\menu.php'); ?>
+	</header>
 <div class="row" style="height:auto">
 <div class="col">
 <div class="card border-dark mb-3" style="width: 18rem;">
